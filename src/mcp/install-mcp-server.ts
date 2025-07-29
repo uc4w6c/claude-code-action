@@ -22,6 +22,7 @@ async function checkActionsReadPermission(
 ): Promise<boolean> {
   try {
     const client = new Octokit({ auth: token, baseUrl: GITHUB_API_URL });
+    console.log('`mcp install start');
 
     // Try to list workflow runs - this requires actions:read
     // We use per_page=1 to minimize the response size
@@ -148,6 +149,7 @@ export async function prepareMcpConfig(
     }
 
     if (hasGitHubMcpTools) {
+      console.log('hasGitHubMcpTools start');
       baseMcpConfig.mcpServers.github = {
         command: "docker",
         args: [
@@ -166,6 +168,7 @@ export async function prepareMcpConfig(
         },
       };
       console.log('baseMcpConfig.mcpServers.github' + JSON.stringify(baseMcpConfig.mcpServers.github));
+      console.log('hasGitHubMcpTools end');
     }
 
     // Merge with additional MCP config if provided
@@ -200,6 +203,7 @@ export async function prepareMcpConfig(
       }
     }
 
+    console.log('`mcp install start');
     return JSON.stringify(baseMcpConfig, null, 2);
   } catch (error) {
     core.setFailed(`Install MCP server failed with error: ${error}`);
