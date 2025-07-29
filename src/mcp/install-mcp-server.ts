@@ -165,6 +165,7 @@ export async function prepareMcpConfig(
           GITHUB_HOST: GITHUB_SERVER_URL,
         },
       };
+      console.log('baseMcpConfig.mcpServers.github' + JSON.stringify(baseMcpConfig.mcpServers.github));
     }
 
     // Merge with additional MCP config if provided
